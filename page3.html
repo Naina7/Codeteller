@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+		<title>Countdown time|Page3</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+		 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+		 <link rel="stylesheet" href="mystyle.css">
+		
+	</head>
+	<body >
+		<center>
+		     <h1>You have Paused your session.</h1>
+			<div id="in"><span id="countdown"></span></div></br>
+			 <button onclick="movePage()" class="btn btn-warning btn-lg">Resume</button>
+		</center>
+		
+		<script type="text/javascript">
+var loc = window.location.toString();
+try{
+	var time = loc.split('?')[1].split('=')[1];
+}
+catch(e){
+	console.log('no timer in url');
+}
+
+if(time)
+	c=time;
+	var seconds;
+var minutes;
+var hours;
+	
+function timer() {
+    c = c - 1;
+    if (c == -1) {
+        clearInterval(time);
+        return;
+    }
+     seconds = c % 60;
+     minutes = Math.floor(c / 60);
+     hours = Math.floor(minutes / 60);
+    minutes %= 60;
+    hours %= 60;
+    if(hours<10)
+	hours='0'+hours;
+	 if(minutes<10)
+	minutes='0'+minutes;
+	 if(seconds<10)
+	seconds='0'+seconds;
+
+    document.getElementById("countdown").innerHTML = "The Remaining Time: " +hours+ ":" + minutes + ":" + seconds ;
+}
+timer();
+var movePage = function(){
+	var path = "page2.html";
+	location.replace(window.location.hostname + path + '?timer='+c);
+}
+
+</script>
+	</body>
+</html>
